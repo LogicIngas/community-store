@@ -95,7 +95,7 @@ export default function LoginPage() {
             />
 
             <Button
-              onPress={() => navigation.navigate("Main")}
+              onPress={() => navigation.navigate("RoleSelection")}
               backgroundColor={Colors.primary}
               hasBorder={false}
               style={[styles.signInButton, Shadows.primary]}

@@ -3,11 +3,11 @@ import { View, Text, StyleSheet } from 'react-native';
 import Screen from '../../components/ui/Screen';
 import { Colors, Fonts } from '../../theme';
 
-export default function Account() {
+export default function Explore() {
   return (
     <Screen statusBar="dark" backgroundColor={Colors.mainBackground}>
       <View style={styles.container}>
-        <Text style={styles.text}>This is the Account page</Text>
+        <Text style={styles.text}>This is the Explore page</Text>
       </View>
     </Screen>
   );
