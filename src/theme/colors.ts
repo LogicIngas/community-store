@@ -8,4 +8,5 @@ export const Colors = {
   secondaryText: '#7A756D',
   border: '#E5E0D8',
   white: '#FFFFFF',
+  greenAccent: '#6B8F71',
 } as const;
