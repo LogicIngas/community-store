@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { GraduationCap, Star } from 'lucide-react-native';
+import { Store, Star, ShoppingCart } from 'lucide-react-native';
 import Screen from '../../components/ui/Screen';
 import { Colors } from '../../theme';
+import ProfileOptionsCard from '../../components/profile/ProfileOptionsCard';
+import ProfileOptionRow from '../../components/profile/ProfileOptionRow';
 import ProfileHead from '../../components/profile/ProfileHead';
 import ProfileDetails from '../../components/profile/ProfileDetails';
 import InfoBar, { InfoItem } from '../../components/ui/InfoBar';
@@ -28,14 +30,14 @@ export default function Profile() {
       <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
         <ProfileHead 
           imageSource={require('../../../assets/images/welcome.png')} 
-          badgeText="Verified Student"
-          badgeIcon={<GraduationCap color={Colors.white} size={14} strokeWidth={2.3} />}
+          badgeText="Verified vendor"
+          badgeIcon={<Store color={Colors.white} size={14} strokeWidth={2.3} />}
         />
         
         <ProfileDetails 
           name="Inga Mbobo"
           subText="Application Development - 3rd Year"
-          subIcon={<GraduationCap color="#6B7280" size={16} />}
+          subIcon={<Store color="#6B7280" size={16} />}
         />
 
         <InfoBar
@@ -47,6 +49,19 @@ export default function Profile() {
         />
 
         <AccountSettings />
+        <ProfileOptionsCard title="MARKETPLACE">
+          <ProfileOptionRow
+            icon={<ShoppingCart color={Colors.primary} size={20} strokeWidth={2.5} />}
+            label="Manage My Listings"
+            onPress={() => {}}
+          />
+          <ProfileOptionRow
+            icon={<Store color={Colors.primary} size={20} strokeWidth={2.5} />}
+            label="Sales Dashboard"
+            onPress={() => {}}
+            isLast
+          />
+        </ProfileOptionsCard>
       </ScrollView>
     </Screen>
   );
