@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: Fonts.bold,
-    fontSize: 26, 
+    fontSize: 26,
     color: Colors.head,
     marginBottom: 6,
   },
