@@ -8,12 +8,14 @@ type ProfileHeadProps = {
   imageSource: ImageSourcePropType;
   badgeText?: string;
   badgeIcon?: React.ReactNode;
+  badgeBackgroundColor?: string;
 };
 
-export default function ProfileHead({ 
-  imageSource, 
-  badgeText, 
-  badgeIcon 
+export default function ProfileHead({
+  imageSource,
+  badgeText,
+  badgeIcon,
+  badgeBackgroundColor
 }: ProfileHeadProps) {
   const insets = useSafeAreaInsets();
 
@@ -21,9 +23,12 @@ export default function ProfileHead({
     <View style={[styles.container, { paddingTop: insets.top + 20 }]}>
       <View style={styles.avatarWrapper}>
         <Avatar imageSource={imageSource} size={110} />
-        
+
         {badgeText ? (
-          <View style={styles.badgeContainer}>
+          <View style={[
+            styles.badgeContainer,
+            badgeBackgroundColor ? { backgroundColor: badgeBackgroundColor } : null
+          ]}>
             {badgeIcon}
             <Text style={styles.badgeText}>{badgeText}</Text>
           </View>
@@ -46,12 +51,12 @@ const styles = StyleSheet.create({
   },
   badgeContainer: {
     position: "absolute",
-    bottom: -12, 
-    alignSelf: "center", 
+    bottom: -12,
+    alignSelf: "center",
     height: 30,
     backgroundColor: Colors.primary,
-    borderRadius: 16, 
-    borderWidth: 2, 
+    borderRadius: 16,
+    borderWidth: 2,
     borderColor: Colors.white,
     flexDirection: "row",
     alignItems: "center",
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontFamily: Fonts.medium,
-    fontSize: 11, 
+    fontSize: 11,
     color: Colors.white,
   },
 });
