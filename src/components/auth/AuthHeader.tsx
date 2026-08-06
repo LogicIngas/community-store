@@ -10,12 +10,14 @@ interface AuthHeaderProps {
   showLogo?: boolean;
   showBackButton?: boolean;
   imageHeight?: number;
+  onBackPress?: () => void;
 }
 
 export default function AuthHeader({ 
   showLogo = false, 
   showBackButton = true,
-  imageHeight = 240
+  imageHeight = 240,
+  onBackPress
 }: AuthHeaderProps) {
   const navigation = useNavigation();
 
@@ -38,7 +40,7 @@ export default function AuthHeader({
         {showBackButton ? (
           <TouchableOpacity 
             style={styles.backButton}
-            onPress={() => navigation.goBack()}
+            onPress={() => onBackPress ? onBackPress() : navigation.goBack()}
           >
             <ArrowLeft size={24} color={Colors.head} />
           </TouchableOpacity>

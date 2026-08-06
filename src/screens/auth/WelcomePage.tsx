@@ -84,7 +84,7 @@ export default function WelcomeScreen() {
               <View style={[styles.buttonContainer, { gap: 16 }]}>
                 <Button
                   backgroundColor={Colors.primary}
-                  onPress={() => {}}
+                  onPress={() => navigation.navigate("Signup")}
                   hasBorder={false}
                   style={[{ height: 56 }, Shadows.primary]}
                 >
