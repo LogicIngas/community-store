@@ -81,7 +81,7 @@ export default function LoginPage() {
             <PasswordInput
               label="PASSWORD"
               rightLabel="FORGOT PASSWORD?"
-              onRightLabelPress={() => {}}
+              onRightLabelPress={() => { }}
               placeholder="Enter your password"
               value={password}
               onChangeText={setPassword}
@@ -138,7 +138,7 @@ export default function LoginPage() {
           {/* Footer */}
           <View style={styles.footer}>
             <Text style={styles.footerText}>New to CommunityStore? </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
               <Text style={styles.footerLink}>Create Account</Text>
             </TouchableOpacity>
           </View>

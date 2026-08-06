@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WelcomePage from '../../screens/auth/WelcomePage';
 import LoginPage from '../../screens/auth/LoginPage';
+import SignupPage from '../../screens/auth/SignupPage';
 import RoleSelection from '../../screens/auth/RoleSelection';
 import StudentTabNavigator from './StudentTabNavigator';
 import VendorTabNavigator from './VendorTabNavigator';
@@ -11,6 +12,7 @@ import FacultyTabNavigator from './FacultyTabNavigator';
 export type RootStackParamList = {
   Welcome: undefined;
   Login: undefined;
+  Signup: { defaultRole?: "Student" | "Faculty" | "Vendor" | "Resident" } | undefined;
   RoleSelection: undefined;
   StudentTabs: undefined;
   VendorTabs: undefined;
@@ -31,6 +33,7 @@ export default function RootNavigator() {
     >
       <Stack.Screen name="Welcome" component={WelcomePage} />
       <Stack.Screen name="Login" component={LoginPage} />
+      <Stack.Screen name="Signup" component={SignupPage} />
       <Stack.Screen name="RoleSelection" component={RoleSelection} />
       <Stack.Screen name="StudentTabs" component={StudentTabNavigator} />
       <Stack.Screen name="VendorTabs" component={VendorTabNavigator} />
