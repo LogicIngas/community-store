@@ -8,6 +8,7 @@ import StudentTabNavigator from './StudentTabNavigator';
 import VendorTabNavigator from './VendorTabNavigator';
 import CommunityTabNavigator from './CommunityTabNavigator';
 import FacultyTabNavigator from './FacultyTabNavigator';
+import ChatDetail from '../../screens/chat/ChatDetail';
 
 export type RootStackParamList = {
   Welcome: undefined;
@@ -18,6 +19,7 @@ export type RootStackParamList = {
   VendorTabs: undefined;
   CommunityTabs: undefined;
   FacultyTabs: undefined;
+  ChatDetail: { conversationId: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -39,6 +41,7 @@ export default function RootNavigator() {
       <Stack.Screen name="VendorTabs" component={VendorTabNavigator} />
       <Stack.Screen name="CommunityTabs" component={CommunityTabNavigator} />
       <Stack.Screen name="FacultyTabs" component={FacultyTabNavigator} />
+      <Stack.Screen name="ChatDetail" component={ChatDetail} />
     </Stack.Navigator>
   );
 }

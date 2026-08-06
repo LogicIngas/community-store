@@ -1,35 +1,53 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import AnimatedScroll from "../../components/ui/AnimatedScroll";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Building2,
   Megaphone,
   ShieldCheck,
   Users,
-  HelpCircle
-} from 'lucide-react-native';
-import Screen from '../../components/ui/Screen';
-import { Colors, Fonts } from '../../theme';
-import ProfileHead from '../../components/profile/ProfileHead';
-import ProfileDetails from '../../components/profile/ProfileDetails';
-import InfoBar, { InfoItem } from '../../components/ui/InfoBar';
-import AccountSettings from '../../components/ui/AccountSettings';
-import ProfileOptionsCard from '../../components/profile/ProfileOptionsCard';
-import ProfileOptionRow from '../../components/profile/ProfileOptionRow';
-import Button from '../../components/ui/Button';
+  HelpCircle,
+} from "lucide-react-native";
+import Screen from "../../components/ui/Screen";
+import { Colors, Fonts } from "../../theme";
+import ProfileHead from "../../components/profile/ProfileHead";
+import ProfileDetails from "../../components/profile/ProfileDetails";
+import InfoBar, { InfoItem } from "../../components/ui/InfoBar";
+import AccountSettings from "../../components/ui/AccountSettings";
+import ProfileOptionsCard from "../../components/profile/ProfileOptionsCard";
+import ProfileOptionRow from "../../components/profile/ProfileOptionRow";
+import Button from "../../components/ui/Button";
 
 export default function Profile() {
+  const tabBarHeight = useBottomTabBarHeight();
+  const insets = useSafeAreaInsets();
+
   const infoItems: InfoItem[] = [
     { topText: "18", bottomText: "ANNOUNCEMENTS" },
     { topText: "42", bottomText: "REPORTS HANDLED" },
   ];
 
   return (
-    <Screen statusBar="dark" backgroundColor={Colors.mainBackground} edges={['left', 'right']}>
-      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+    <Screen
+      statusBar="dark"
+      backgroundColor={Colors.mainBackground}
+      edges={["left", "right"]}
+    >
+      <AnimatedScroll
+        contentContainerStyle={[
+          styles.container,
+          { paddingBottom: tabBarHeight + 40 },
+        ]}
+        showsVerticalScrollIndicator={false}
+      >
         <ProfileHead
-          imageSource={require('../../../assets/images/welcome.png')}
+          imageSource={require("../../../assets/images/welcome.png")}
           badgeText="Faculty Admin"
-          badgeIcon={<Building2 color={Colors.white} size={14} strokeWidth={2.3} />}
+          badgeIcon={
+            <Building2 color={Colors.white} size={14} strokeWidth={2.3} />
+          }
           badgeBackgroundColor={Colors.greenAccent}
         />
 
@@ -42,21 +60,24 @@ export default function Profile() {
         <InfoBar
           items={infoItems}
           topTextColor={Colors.head}
-          topTextSize={26}
           bottomTextColor="#6B7280"
-          bottomTextSize={12}
           separatorColor={Colors.border}
           style={styles.infoBar}
         />
 
         <View style={styles.buttonContainer}>
           <Button
-            onPress={() => { }}
+            onPress={() => {}}
             backgroundColor={Colors.greenAccent}
             activeBackgroundColor="#57765C"
             style={styles.bulletinButton}
           >
-            <Megaphone color={Colors.white} size={20} strokeWidth={2.2} style={styles.buttonIcon} />
+            <Megaphone
+              color={Colors.white}
+              size={20}
+              strokeWidth={2.2}
+              style={styles.buttonIcon}
+            />
             <Text style={styles.buttonText}>Post to Bulletin Board</Text>
           </Button>
         </View>
@@ -65,32 +86,38 @@ export default function Profile() {
 
         <ProfileOptionsCard title="ADMIN TOOLS">
           <ProfileOptionRow
-            icon={<ShieldCheck color={Colors.primary} size={20} strokeWidth={2.5} />}
+            icon={
+              <ShieldCheck color={Colors.greenAccent} size={20} strokeWidth={2.5} />
+            }
             label="Community Moderation"
-            onPress={() => { }}
+            onPress={() => {}}
           />
           <ProfileOptionRow
-            icon={<Users color={Colors.primary} size={20} strokeWidth={2.5} />}
+            icon={<Users color={Colors.greenAccent} size={20} strokeWidth={2.5} />}
             label="User Management"
-            onPress={() => { }}
+            onPress={() => {}}
           />
           <ProfileOptionRow
-            icon={<Megaphone color={Colors.primary} size={20} strokeWidth={2.5} />}
+            icon={
+              <Megaphone color={Colors.greenAccent} size={20} strokeWidth={2.5} />
+            }
             label="Manage Board Posts"
-            onPress={() => { }}
+            onPress={() => {}}
             isLast
           />
         </ProfileOptionsCard>
 
         <ProfileOptionsCard title="HELP AND SUPPORT">
           <ProfileOptionRow
-            icon={<HelpCircle color={Colors.primary} size={20} strokeWidth={2.5} />}
+            icon={
+              <HelpCircle color={Colors.primary} size={20} strokeWidth={2.5} />
+            }
             label="Reports"
-            onPress={() => { }}
+            onPress={() => {}}
             isLast
           />
         </ProfileOptionsCard>
-      </ScrollView>
+      </AnimatedScroll>
     </Screen>
   );
 }
@@ -98,19 +125,18 @@ export default function Profile() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingBottom: 40,
   },
   infoBar: {
-    marginTop: 16,
-    paddingHorizontal: 24,
+    marginTop: 12,
+    paddingHorizontal: 14,
   },
   buttonContainer: {
-    width: '100%',
+    width: "100%",
     paddingHorizontal: 14,
     marginTop: 24,
   },
   bulletinButton: {
-    width: '100%',
+    width: "100%",
     borderRadius: 16,
     minHeight: 54,
   },

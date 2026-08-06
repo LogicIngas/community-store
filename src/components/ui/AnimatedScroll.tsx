@@ -1,7 +1,14 @@
 import React, { useRef, ReactNode } from "react";
-import { Animated, ScrollViewProps } from "react-native";
+import {
+  Animated,
+  ScrollViewProps,
+  StyleSheet,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import SystemBars from "./SystemBars";
+
+const AnimatedKeyboardAwareScrollView = Animated.createAnimatedComponent(KeyboardAwareScrollView as any);
 
 interface AnimatedScrollProps extends ScrollViewProps {
   children: ReactNode;
@@ -18,8 +25,8 @@ export default function AnimatedScroll({
   const insets = useSafeAreaInsets();
 
   const topOpacity = scrollY.interpolate({
-    inputRange: [0, 60],
-    outputRange: [0, 1],
+    inputRange: [0, 50],
+    outputRange: [0, 0.95],
     extrapolate: "clamp",
   });
 
@@ -27,7 +34,11 @@ export default function AnimatedScroll({
     <>
       {showSystemBars && <SystemBars blur={true} topOpacity={topOpacity} />}
 
-      <Animated.ScrollView
+      <AnimatedKeyboardAwareScrollView
+        enableOnAndroid={true}
+        extraHeight={40}
+        extraScrollHeight={20}
+        keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
         bounces={true}
         alwaysBounceVertical={true}
@@ -36,14 +47,14 @@ export default function AnimatedScroll({
           { useNativeDriver: false },
         )}
         scrollEventThrottle={16}
-        contentContainerStyle={[
+        contentContainerStyle={StyleSheet.flatten([
+          { paddingBottom: insets.bottom + 15 },
           contentContainerStyle,
-          { paddingBottom: insets.bottom + 20 },
-        ]}
+        ])}
         {...props}
       >
         {children}
-      </Animated.ScrollView>
+      </AnimatedKeyboardAwareScrollView>
     </>
   );
 }

@@ -17,7 +17,7 @@ export default function VendorVerificationCard({
       <View style={styles.card}>
         <View style={styles.headerRow}>
           <View style={styles.titleContainer}>
-            <ShieldCheck color={Colors.primary} size={20} strokeWidth={2.2} />
+            <ShieldCheck color={Colors.greenAccent} size={20} strokeWidth={2.2} />
             <Text style={styles.titleText}>Vendor Verification</Text>
           </View>
           <Text style={styles.percentageText}>{percentage}%</Text>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: '100%',
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.yellowAccent,
     borderRadius: 5,
   },
   subtitleText: {

@@ -1,6 +1,9 @@
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
-import { Store, Star, ShoppingCart } from 'lucide-react-native';
+import { StyleSheet } from 'react-native';
+import AnimatedScroll from '../../components/ui/AnimatedScroll';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Store, Star, ShoppingCart, GraduationCap, History, Heart, HelpCircle, BookOpen } from 'lucide-react-native';
 import Screen from '../../components/ui/Screen';
 import { Colors } from '../../theme';
 import ProfileOptionsCard from '../../components/profile/ProfileOptionsCard';
@@ -11,6 +14,9 @@ import InfoBar, { InfoItem } from '../../components/ui/InfoBar';
 import AccountSettings from '../../components/ui/AccountSettings';
 
 export default function Profile() {
+  const tabBarHeight = useBottomTabBarHeight();
+  const insets = useSafeAreaInsets();
+
   const infoItems: InfoItem[] = [
     { topText: "0", bottomText: "Items sold" },
     { 
@@ -27,17 +33,17 @@ export default function Profile() {
 
   return (
     <Screen statusBar="dark" backgroundColor={Colors.mainBackground} edges={['left', 'right']}>
-      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+      <AnimatedScroll contentContainerStyle={[styles.container, { paddingBottom: tabBarHeight + 40 }]} showsVerticalScrollIndicator={false}>
         <ProfileHead 
           imageSource={require('../../../assets/images/welcome.png')} 
-          badgeText="Verified vendor"
-          badgeIcon={<Store color={Colors.white} size={14} strokeWidth={2.3} />}
+          badgeText="Verified Student"
+          badgeIcon={<GraduationCap color={Colors.white} size={14} strokeWidth={2.3} />}
         />
         
         <ProfileDetails 
           name="Inga Mbobo"
           subText="Application Development - 3rd Year"
-          subIcon={<Store color="#6B7280" size={16} />}
+          subIcon={<BookOpen color="#6B7280" size={16} />}
         />
 
         <InfoBar
@@ -51,18 +57,45 @@ export default function Profile() {
         <AccountSettings />
         <ProfileOptionsCard title="MARKETPLACE">
           <ProfileOptionRow
-            icon={<ShoppingCart color={Colors.primary} size={20} strokeWidth={2.5} />}
+            icon={<ShoppingCart color={Colors.greenAccent} size={20} strokeWidth={2.5} />}
             label="Manage My Listings"
             onPress={() => {}}
           />
           <ProfileOptionRow
-            icon={<Store color={Colors.primary} size={20} strokeWidth={2.5} />}
+            icon={<Store color={Colors.greenAccent} size={20} strokeWidth={2.5} />}
             label="Sales Dashboard"
             onPress={() => {}}
             isLast
           />
         </ProfileOptionsCard>
-      </ScrollView>
+
+        <ProfileOptionsCard title="MY SHOPPING">
+          <ProfileOptionRow
+            icon={
+              <History color={Colors.primary} size={20} strokeWidth={2.5} />
+            }
+            label="Order History"
+            onPress={() => {}}
+          />
+          <ProfileOptionRow
+            icon={<Heart color={Colors.primary} size={20} strokeWidth={2.5} />}
+            label="Saved Items"
+            onPress={() => {}}
+            isLast
+          />
+        </ProfileOptionsCard>
+
+        <ProfileOptionsCard title="HELP AND SUPPORT">
+          <ProfileOptionRow
+            icon={
+              <HelpCircle color={Colors.primary} size={20} strokeWidth={2.5} />
+            }
+            label="Contact Us"
+            onPress={() => {}}
+            isLast
+          />
+        </ProfileOptionsCard>
+      </AnimatedScroll>
     </Screen>
   );
 }
@@ -70,7 +103,6 @@ export default function Profile() {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingBottom: 40,
   },
   infoBar: {
     marginTop: 12,

@@ -7,6 +7,8 @@ export const Colors = {
   head: '#2D2A26',
   secondaryText: '#7A756D',
   border: '#E5E0D8',
+  divider: 'rgba(0,0,0,0.05)', // Soft, premium divider line
   white: '#FFFFFF',
   greenAccent: '#6B8F71',
+  yellowAccent: '#E8A838',
 } as const;

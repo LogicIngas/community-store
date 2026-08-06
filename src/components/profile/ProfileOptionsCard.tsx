@@ -22,14 +22,14 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingHorizontal: 14,
-    marginTop: 32,
+    marginTop: 20,
   },
   title: {
     fontFamily: Fonts.medium,
     fontSize: 13,
     color: Colors.secondaryText,
     marginBottom: 8,
-    marginLeft: 4,
+    marginLeft: 8,
     letterSpacing: 0.5,
   },
   card: {
